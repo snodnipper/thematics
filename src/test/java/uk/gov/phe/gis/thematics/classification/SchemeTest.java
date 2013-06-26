@@ -8,6 +8,8 @@
 package uk.gov.phe.gis.thematics.classification;
 
 import com.google.gson.Gson;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.TreeMap;
 import static org.junit.Assert.assertEquals;
 
 public class SchemeTest {
+
+    private static Logger sLogger = LogManager.getLogger(SchemeTest.class);
 
     @Test
     public void equalInterval() {
@@ -91,11 +95,11 @@ public class SchemeTest {
     private static void printResult(SortedMap<Double, List<Double>> bandedItems) {
         Set<Double> bands = bandedItems.keySet();
         for (Double band : bands) {
-            System.out.println("##############");
-            System.out.println("Band: " + band);
+            sLogger.debug("##############");
+            sLogger.debug("Band: " + band);
             List<Double> values = bandedItems.get(band);
             for (Double value : values) {
-                System.out.println("Value: " + value);
+                sLogger.debug("Value: " + value);
             }
         }
     }

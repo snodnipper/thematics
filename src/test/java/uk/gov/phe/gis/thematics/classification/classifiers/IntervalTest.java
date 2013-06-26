@@ -24,7 +24,7 @@ public abstract class IntervalTest {
             getLogger().debug("Checking: " + i + ", " + expected[i]);
             assertEquals(expected[i], actual[i]);
         }
-        System.out.println("---");
+        getLogger().debug("---");
     }
 
     protected void checkIntervals(List<Interval> expected, List<Interval> actual) {
@@ -33,6 +33,6 @@ public abstract class IntervalTest {
             getLogger().debug("Checking: " + expected.get(i));
             assertEquals(expected.get(i), actual.get(i));
         }
-        System.out.println("---");
+        getLogger().debug("---");
     }
 }

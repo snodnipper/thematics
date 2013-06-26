@@ -58,7 +58,7 @@ public final class Scheme {
         final double minValue = minValue(data);
         final double[] classIntervals = getClassIntervals(classWidth, noClasses, minValue);
         //for(int i=0;i<classIntervals.length;i++)
-        //System.out.println(classIntervals[i]);
+        //sLogger.debug(classIntervals[i]);
         return classIntervals;
     }
 
@@ -154,7 +154,7 @@ public final class Scheme {
             for (int j = 0; j < breakPoints.length; j++) {
                 double breakPoint = breakPoints[j];
                 breakPoint = Double.valueOf(twoDForm.format(breakPoint)); //format to two decimal places
-                //System.out.println(breakPoint);
+                //sLogger.debug(breakPoint);
                 if (j + 1 < breakPoints.length) {
                     nextbreakPoint = breakPoints[j + 1];
                     nextbreakPoint = Double.valueOf(twoDForm.format(nextbreakPoint)); //format to two decimal places
@@ -179,10 +179,10 @@ public final class Scheme {
 
         Set<Double> bands = sortedMap.keySet();
         for (Double band : bands) {
-            System.out.println("=< " + band);
+            sLogger.debug("=< " + band);
             List<Double> values = sortedMap.get(band);
             for (Double value : values) {
-                System.out.println("\tValue: " + value);
+                sLogger.debug("\tValue: " + value);
             }
         }
 
@@ -228,7 +228,7 @@ public final class Scheme {
             optimalbreakPoints = breakPoints;
             bestMethod = "Natural Interval";
         }
-        System.out.println(bestMethod);
+        sLogger.debug(bestMethod);
         return optimalbreakPoints;
 
     }
@@ -262,13 +262,13 @@ public final class Scheme {
             last_count = k;
         }
 
-        //calcualte difference between average of each class and actual data values for that class
+        //calculate difference between average of each class and actual data values for that class
         double difference[] = new double[data.length];
         for (int i = 0; i < data.length; i++) {
             double data_val = data[i];
             double avgVal = classAverageVals[i];
             difference[i] = Math.abs(data_val - avgVal);
-            //System.out.println(difference[i]);
+            //sLogger.debug(difference[i]);
         }
 
         //calculate overall Difference
@@ -342,18 +342,16 @@ public final class Scheme {
 
         double[] classIntervals = equalIntervals(noClasses, data);
         SortedMap<Double, List<Double>> result = classify(classIntervals, data);
-        System.out.println("Equal Interval " + getClassifiedDifference(result, data));
+        sLogger.debug("Equal Interval " + getClassifiedDifference(result, data) + "\n");
 
-        System.out.println();
         classIntervals = definedIntervals(classWidth, data);
         result = classify(classIntervals, data);
-        System.out.println("Defined Interval " + getClassifiedDifference(result, data));
+        sLogger.debug("Defined Interval " + getClassifiedDifference(result, data) + "\n");
 
-        System.out.println();
         classIntervals = naturalIntervals(noClasses, data);
 
         result = classify(classIntervals, data);
-        System.out.println("Natural Jenks " + getClassifiedDifference(result, data));
+        sLogger.debug("Natural Jenks " + getClassifiedDifference(result, data) + "\n");
 
         //manual classification
         /*double [] classIntervals = {30,50,70,90,150};
