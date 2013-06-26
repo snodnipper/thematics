@@ -1,0 +1,6 @@
+# Ignore IntelliJ IDE files
+thematics.iml
+.idea/
+
+# Ignore output directory
+target/
