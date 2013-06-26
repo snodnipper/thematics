@@ -1,21 +1,23 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>uk.org.hpa.gis.thematics</groupId>
-  <artifactId>thematics</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <groupId>uk.org.hpa.gis.thematics</groupId>
+    <artifactId>thematics</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>thematics</name>
-  <url>http://maven.apache.org</url>
+    <name>thematics</name>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <ide.config.location>${project.basedir}${file.separator}ide</ide.config.location>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <ide.config.location>${project.basedir}${file.separator}ide</ide.config.location>
+        <archiva.endpoint>http://192.168.1.115:8282</archiva.endpoint>
+    </properties>
 
-  <dependencies>
+    <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -76,7 +78,8 @@
                     <configuration>
                         <consoleOutput>true</consoleOutput>
                         <configLocation>${ide.config.location}/checkstyle.xml</configLocation>
-                        <suppressionsLocation>${ide.config.location}/checkstyle-suppressions.xml</suppressionsLocation>
+                        <suppressionsLocation>${ide.config.location}/checkstyle-suppressions.xml
+                        </suppressionsLocation>
                     </configuration>
                     <executions>
                         <execution>
@@ -91,4 +94,18 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>archiva.internal</id>
+            <name>Internal Release Repository</name>
+            <url>${archiva.endpoint}/archiva/repository/internal/</url>
+        </repository>
+        <snapshotRepository>
+            <id>archiva.snapshots</id>
+            <name>Internal Snapshot Repository</name>
+            <url>${archiva.endpoint}/archiva/repository/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
