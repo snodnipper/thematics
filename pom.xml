@@ -15,8 +15,8 @@
         <url>https://github.com/mrait/thematics/</url>
         <connection>scm:git:git://github.com/mrait/thematics.git</connection>
         <developerConnection>scm:git:git@github.com:mrait/thematics.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <developers>
         <developer>
