@@ -1,6 +1,8 @@
 # Ignore IntelliJ IDE files
-thematics.iml
+*.iml
 .idea/
 
 # Ignore output directory
 target/
+build/
+
